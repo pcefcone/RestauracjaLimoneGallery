@@ -2,33 +2,38 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restauracja Limone Gallery</title>
+    <!-- Viewport с отключением запрета на зум браузера -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Restauracja Limone</title>
 
-    <!-- Подключение стилей для всплывающего просмотра фото -->
+    <!-- Подключение стилей для всплывающего просмотра Photo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: #ffffff;
             margin: 0;
-            padding: 20px;
+            padding: 16px 12px;
             min-height: 100vh;
-            box-sizing: border-box;
 
-            /* Фотография 6.jpg в качестве фонового изображения */
+            /* Photoграфия 6.jpg в качестве фонового изображения */
             background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('6.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            -webkit-tap-highlight-color: transparent;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 24px;
+            margin: 10px 0 20px 0;
+            font-size: 22px;
             font-weight: 400;
             letter-spacing: 1px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
@@ -37,10 +42,25 @@
         /* Адаптивная сетка карточек */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Планшеты и десктопы */
+        @media (min-width: 600px) {
+            body {
+                padding: 24px 20px;
+            }
+            h1 {
+                font-size: 26px;
+                margin-bottom: 25px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 16px;
+            }
         }
 
         .gallery-item {
@@ -49,6 +69,7 @@
             aspect-ratio: 4 / 3;
             background-color: rgba(30, 30, 30, 0.5);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            display: block;
         }
 
         .gallery-item img {
@@ -59,14 +80,23 @@
             transition: transform 0.3s ease;
         }
 
-        .gallery-item img:hover {
-            transform: scale(1.03);
+        @media (min-width: 768px) {
+            .gallery-item img:hover {
+                transform: scale(1.03);
+            }
+        }
+
+        /* Стили для сенсорного увеличения Photo (GLightbox) */
+        .gslide-image img {
+            max-height: 90vh !important;
+            object-fit: contain !important;
+            touch-action: pan-x pan-y pinch-zoom !important;
         }
     </style>
 </head>
 <body>
 
-    <h1>Restauracja Limone Gallery</h1>
+    <h1>Restauracja Limone</h1>
 
     <div class="gallery-grid">
         <a href="1.jpg" class="glightbox gallery-item"><img src="1.jpg" alt="Photo 1"></a>
@@ -86,12 +116,14 @@
         <a href="15.jpg" class="glightbox gallery-item"><img src="15.jpg" alt="Photo 15"></a>
     </div>
 
-    <!-- Скрипт для открытия фото во весь экран при клике -->
+    <!-- Скрипт просмотра с поддержкой сенсорных жестов -->
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
         const lightbox = GLightbox({
             touchNavigation: true,
-            loop: true
+            loop: true,
+            zoomable: true,
+            draggable: true
         });
     </script>
 </body>
