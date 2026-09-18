@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport с отключением запрета на зум браузера -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Restauracja Limone</title>
 
@@ -41,7 +40,6 @@
             padding: 16px 12px;
             min-height: 100vh;
 
-            /* Фотография 6.jpg в качестве фонового изображения */
             background-color: #121212;
             background-image: 
                 linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
@@ -77,7 +75,7 @@
             font-weight: 300;
             letter-spacing: 0.5px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-            margin: 0 0 1.5em 0; /* Отступ в 1 строку после текста */
+            margin: 0 0 1.5em 0;
             text-transform: uppercase;
             text-align: center;
         }
@@ -91,7 +89,6 @@
             margin: 0 auto;
         }
 
-        /* Планшеты и десктопы */
         @media (min-width: 600px) {
             body {
                 padding: 24px 20px;
@@ -140,23 +137,23 @@
         </p>
     </div>
 
-    <!-- Добавлен id="gallery" и атрибуты высоты/ширины originals -->
+    <!-- Убраны жесткие data-pswp-width/height, так как размеры вычисляются автоматически -->
     <div class="gallery-grid" id="gallery">
-        <a href="1.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_1.jpg" alt="Photo 1"></a>
-        <a href="2.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_2.jpg" alt="Photo 2"></a>
-        <a href="3.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_3.jpg" alt="Photo 3"></a>
-        <a href="4.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_4.jpg" alt="Photo 4"></a>
-        <a href="5.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_5.jpg" alt="Photo 5"></a>
-        <a href="6.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_6.jpg" alt="Photo 6"></a>
-        <a href="7.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_7.jpg" alt="Photo 7" loading="lazy"></a>
-        <a href="8.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_8.jpg" alt="Photo 8" loading="lazy"></a>
-        <a href="9.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_9.jpg" alt="Photo 9" loading="lazy"></a>
-        <a href="10.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_10.jpg" alt="Photo 10" loading="lazy"></a>
-        <a href="11.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_11.jpg" alt="Photo 11" loading="lazy"></a>
-        <a href="12.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_12.jpg" alt="Photo 12" loading="lazy"></a>
-        <a href="13.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_13.jpg" alt="Photo 13" loading="lazy"></a>
-        <a href="14.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_14.jpg" alt="Photo 14" loading="lazy"></a>
-        <a href="15.jpg" data-pswp-width="1920" data-pswp-height="1280" class="gallery-item"><img src="thumbnail_15.jpg" alt="Photo 15" loading="lazy"></a>
+        <a href="1.jpg" class="gallery-item"><img src="thumbnail_1.jpg" alt="Photo 1"></a>
+        <a href="2.jpg" class="gallery-item"><img src="thumbnail_2.jpg" alt="Photo 2"></a>
+        <a href="3.jpg" class="gallery-item"><img src="thumbnail_3.jpg" alt="Photo 3"></a>
+        <a href="4.jpg" class="gallery-item"><img src="thumbnail_4.jpg" alt="Photo 4"></a>
+        <a href="5.jpg" class="gallery-item"><img src="thumbnail_5.jpg" alt="Photo 5"></a>
+        <a href="6.jpg" class="gallery-item"><img src="thumbnail_6.jpg" alt="Photo 6"></a>
+        <a href="7.jpg" class="gallery-item"><img src="thumbnail_7.jpg" alt="Photo 7" loading="lazy"></a>
+        <a href="8.jpg" class="gallery-item"><img src="thumbnail_8.jpg" alt="Photo 8" loading="lazy"></a>
+        <a href="9.jpg" class="gallery-item"><img src="thumbnail_9.jpg" alt="Photo 9" loading="lazy"></a>
+        <a href="10.jpg" class="gallery-item"><img src="thumbnail_10.jpg" alt="Photo 10" loading="lazy"></a>
+        <a href="11.jpg" class="gallery-item"><img src="thumbnail_11.jpg" alt="Photo 11" loading="lazy"></a>
+        <a href="12.jpg" class="gallery-item"><img src="thumbnail_12.jpg" alt="Photo 12" loading="lazy"></a>
+        <a href="13.jpg" class="gallery-item"><img src="thumbnail_13.jpg" alt="Photo 13" loading="lazy"></a>
+        <a href="14.jpg" class="gallery-item"><img src="thumbnail_14.jpg" alt="Photo 14" loading="lazy"></a>
+        <a href="15.jpg" class="gallery-item"><img src="thumbnail_15.jpg" alt="Photo 15" loading="lazy"></a>
     </div>
 
     <!-- Модули PhotoSwipe -->
@@ -175,6 +172,29 @@
             
             /* Коэффициент зумирования при двойном тапе */
             maxZoomLevel: 2.5
+        });
+
+        // Динамическое определение точных размеров оригинального фото при клике
+        lightbox.addFilter('itemData', (itemData) => {
+            return new Promise((resolve) => {
+                if (itemData.w && itemData.h) {
+                    resolve(itemData);
+                    return;
+                }
+                const img = new Image();
+                img.src = itemData.src;
+                img.onload = () => {
+                    itemData.w = img.naturalWidth;
+                    itemData.h = img.naturalHeight;
+                    resolve(itemData);
+                };
+                img.onerror = () => {
+                    // Резервные размеры на случай ошибки загрузки
+                    itemData.w = 1920;
+                    itemData.h = 1080;
+                    resolve(itemData);
+                };
+            });
         });
 
         /* Блокировка pinch-zoom (щипок двумя пальцами отключен) */
