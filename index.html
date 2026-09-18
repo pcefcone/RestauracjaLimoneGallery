@@ -126,6 +126,13 @@
                 transform: scale(1.03);
             }
         }
+
+        /* Стилизация отображения навигационных стрелок поверх фото */
+        .pswp__button--arrow--left,
+        .pswp__button--arrow--right {
+            display: block !important;
+            opacity: 0.85 !important;
+        }
     </style>
 </head>
 <body>
@@ -137,7 +144,6 @@
         </p>
     </div>
 
-    <!-- Убраны жесткие data-pswp-width/height, так как размеры вычисляются автоматически -->
     <div class="gallery-grid" id="gallery">
         <a href="1.jpg" class="gallery-item"><img src="thumbnail_1.jpg" alt="Photo 1"></a>
         <a href="2.jpg" class="gallery-item"><img src="thumbnail_2.jpg" alt="Photo 2"></a>
@@ -166,15 +172,23 @@
             children: 'a',
             pswpModule: PhotoSwipe,
             
-            /* Настройки клика / тапа */
-            doubleTapAction: 'zoom',            // Увеличение/уменьшение только по двойному тапу
-            singleTapAction: 'toggle-controls', // Одиночный тап скрывает/показывает UI
+            /* Явное включение навигационных стрелок управления */
+            arrowKeys: true,
+            showHideAnimationType: 'fade',
+
+            /* Настройки действий */
+            doubleTapAction: 'zoom',            // Зумирование строго по двойному тапу
+            singleTapAction: 'toggle-controls', // Одиночный тап переключает видимость UI
             
-            /* Коэффициент зумирования при двойном тапе */
             maxZoomLevel: 2.5
         });
 
-        // Динамическое определение точных размеров оригинального фото при клике
+        /* Блокировка pinch-zoom (щипок двумя пальцами отключен) */
+        lightbox.on('bindEvents', () => {
+            lightbox.pswp.gestures.pinch = false; 
+        });
+
+        // Автоматическое определение реального разрешения фото перед вызовом просмотра
         lightbox.addFilter('itemData', (itemData) => {
             return new Promise((resolve) => {
                 if (itemData.w && itemData.h) {
@@ -189,7 +203,6 @@
                     resolve(itemData);
                 };
                 img.onerror = () => {
-                    // Резервные размеры на случай ошибки загрузки
                     itemData.w = 1920;
                     itemData.h = 1080;
                     resolve(itemData);
@@ -197,15 +210,10 @@
             });
         });
 
-        /* Блокировка pinch-zoom (щипок двумя пальцами отключен) */
-        lightbox.on('bindEvents', () => {
-            lightbox.pswp.gestures.pinch = false; 
-        });
-
         lightbox.init();
     </script>
 
-    <!-- Предзагрузка оригиналов при касании -->
+    <!-- Предзагрузка полноразмерных оригиналов при касании -->
     <script>
         document.querySelectorAll('.gallery-item').forEach(item => {
             const preload = () => {
