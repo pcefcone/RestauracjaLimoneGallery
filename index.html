@@ -165,22 +165,38 @@
         <a href="15.jpg" class="glightbox gallery-item"><img src="thumbnail_15.jpg" alt="Photo 15 loading="lazy""></a>
     </div>
 
-    <!-- Скрипты просмотра фото -->
-    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-    <script>
-        const lightbox = GLightbox({
-            selector: '.glightbox',
-            touchNavigation: true,
-            loop: true,
-            zoomable: true,       /* Включение Pinch-to-zoom (зум двумя пальцами) */
-            draggable: true,      /* Перетаскивание увеличенного снимка */
-            dragAutoSnap: true,
-            openEffect: 'none',
-            closeEffect: 'none',
-            zoomSize: 3           /* Максимальный коэффициент приближения (3x) */
+   <!-- Модули PhotoSwipe -->
+    <script type="module">
+        import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
+        import PhotoSwipe from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe.esm.js';
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '#gallery',
+            children: 'a',
+            pswpModule: PhotoSwipe,
+            
+            /* Отключаем случайный pinch-zoom двумя пальцами */
+            allowPinchToClose: false,
+            pinchToClose: false,
+            
+            /* Настройки клика / тапа */
+            doubleTapAction: 'zoom', // Двойной тап увеличивает / уменьшает фото
+            singleTapAction: 'toggle-controls', // Одиночный тап скрывает/показывает интерфейс
+            
+            /* Коэффициент масштабирования при двойном тапе */
+            maxZoomLevel: 2.5
         });
 
-/* Ускоренная предзагрузка фото в память при получении фокуса/касания */
+        /* Дополнительное отключение мультитача при движении */
+        lightbox.on('bindEvents', () => {
+            lightbox.pswp.gestures.pinch = false; // Отключаем щипок двумя пальцами
+        });
+
+        lightbox.init();
+    </script>
+
+    <!-- Предзагрузка полноразмерных оригиналов при касании -->
+    <script>
         document.querySelectorAll('.gallery-item').forEach(item => {
             const preload = () => {
                 const url = item.getAttribute('href');
