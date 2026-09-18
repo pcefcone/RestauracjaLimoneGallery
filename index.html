@@ -125,6 +125,21 @@
             zoomable: true,
             draggable: true
         });
+
+/* Ускоренная предзагрузка фото в память при получении фокуса/касания */
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            const preload = () => {
+                const url = item.getAttribute('href');
+                if (url && !item.dataset.loaded) {
+                    const img = new Image();
+                    img.src = url;
+                    item.dataset.loaded = 'true';
+                }
+            };
+            item.addEventListener('touchstart', preload, { passive: true, once: true });
+            item.addEventListener('mouseenter', preload, { once: true });
+        });
+        
     </script>
 </body>
 </html>
