@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+
+    <!-- Подключение стилей для всплывающего просмотра фото -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Адаптивная сетка карточек */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4 / 3;
+            background-color: #1e1e1e;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ГАЛЕРЕЯ</h1>
+
+    <div class="gallery-grid">
+        <!-- фото -->
+        <a href="1.jpg" class="glightbox gallery-item"><img src="1.jpg" alt="Фото 1"></a>
+        <a href="2.jpg" class="glightbox gallery-item"><img src="2.jpg" alt="Фото 2"></a>
+        <!--<a href="3.jpg" class="glightbox gallery-item"><img src="3.jpg" alt="Фото 3"></a>-->
+    </div>
+
+    <!-- Скрипт для открытия фото во весь экран при клике -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({
+            touchNavigation: true,
+            loop: true
+        });
+    </script>
+</body>
+</html>
