@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Restauracja Limone</title>
 
+    <!-- Приоритетная предзагрузка фоновой картинки -->
+    <link rel="preload" as="image" href="6.jpg">
+
     <!-- Подключение стилей для всплывающего просмотра Photo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
@@ -22,11 +25,15 @@
             min-height: 100vh;
 
             /* Photoграфия 6.jpg в качестве фонового изображения */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('6.jpg');
+            background-color: #121212;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                url('6.jpg'), 
+                url('6_thumb.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-attachment: scroll;
             -webkit-tap-highlight-color: transparent;
         }
 
