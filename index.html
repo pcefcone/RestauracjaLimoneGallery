@@ -122,11 +122,17 @@
             }
         }
 
-        /* Стили для сенсорного увеличения Photo (GLightbox) */
+        /* Настройка мобильного зумирования и жестов */
         .gslide-image img {
             max-height: 90vh !important;
             object-fit: contain !important;
-            touch-action: pan-x pan-y pinch-zoom !important;
+            touch-action: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none;
+        }
+
+        .ginner-container {
+            touch-action: none;
         }
     </style>
 </head>
@@ -159,14 +165,19 @@
         <a href="15.jpg" class="glightbox gallery-item"><img src="thumbnail_15.jpg" alt="Photo 15 loading="lazy""></a>
     </div>
 
-    <!-- Скрипт просмотра с поддержкой сенсорных жестов -->
+    <!-- Скрипты просмотра фото -->
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
         const lightbox = GLightbox({
+            selector: '.glightbox',
             touchNavigation: true,
             loop: true,
-            zoomable: true,
-            draggable: true
+            zoomable: true,       /* Включение Pinch-to-zoom (зум двумя пальцами) */
+            draggable: true,      /* Перетаскивание увеличенного снимка */
+            dragAutoSnap: true,
+            openEffect: 'none',
+            closeEffect: 'none',
+            zoomSize: 3           /* Максимальный коэффициент приближения (3x) */
         });
 
 /* Ускоренная предзагрузка фото в память при получении фокуса/касания */
