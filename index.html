@@ -8,25 +8,16 @@
     <!-- Приоритетная предзагрузка фоновой картинки -->
     <link rel="preload" as="image" href="6.jpg">
 
-    <!-- Предзагрузка миниатюр для мгновенного отображения сетки -->
+    <!-- Предзагрузка миниатюр для мгновенной отрисовки -->
     <link rel="preload" as="image" href="thumbnail_1.jpg">
     <link rel="preload" as="image" href="thumbnail_2.jpg">
     <link rel="preload" as="image" href="thumbnail_3.jpg">
     <link rel="preload" as="image" href="thumbnail_4.jpg">
     <link rel="preload" as="image" href="thumbnail_5.jpg">
     <link rel="preload" as="image" href="thumbnail_6.jpg">
-    <link rel="preload" as="image" href="thumbnail_7.jpg">
-    <link rel="preload" as="image" href="thumbnail_8.jpg">
-    <link rel="preload" as="image" href="thumbnail_9.jpg">
-    <link rel="preload" as="image" href="thumbnail_10.jpg">
-    <link rel="preload" as="image" href="thumbnail_11.jpg">
-    <link rel="preload" as="image" href="thumbnail_12.jpg">
-    <link rel="preload" as="image" href="thumbnail_13.jpg">
-    <link rel="preload" as="image" href="thumbnail_14.jpg">
-    <link rel="preload" as="image" href="thumbnail_15.jpg">
 
-    <!-- Подключение стилей PhotoSwipe 5 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe.css" />
+    <!-- Подключение стилей просмотра GLightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <style>
         * {
@@ -44,7 +35,7 @@
             background-image: 
                 linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                 url('6.jpg'), 
-                url('6_thumb.jpg');
+                url('thumbnail_6.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -127,10 +118,17 @@
             }
         }
 
-        /* Стилизация отображения навигационных стрелок поверх фото */
-        .pswp__button--arrow--left,
-        .pswp__button--arrow--right {
-            display: block !important;
+        /* Отрисовка фотографий с сохранением пропорций (вертикальные и горизонтальные) */
+        .gslide-image img {
+            max-height: 90vh !important;
+            max-width: 95vw !important;
+            object-fit: contain !important;
+            transition: transform 0.25s ease-out;
+        }
+
+        /* Вывод навигационных стрелок поверх изображения на смартфонах */
+        .gnext, .gprev {
+            display: flex !important;
             opacity: 0.85 !important;
         }
     </style>
@@ -144,77 +142,70 @@
         </p>
     </div>
 
-    <div class="gallery-grid" id="gallery">
-        <a href="1.jpg" class="gallery-item"><img src="thumbnail_1.jpg" alt="Photo 1"></a>
-        <a href="2.jpg" class="gallery-item"><img src="thumbnail_2.jpg" alt="Photo 2"></a>
-        <a href="3.jpg" class="gallery-item"><img src="thumbnail_3.jpg" alt="Photo 3"></a>
-        <a href="4.jpg" class="gallery-item"><img src="thumbnail_4.jpg" alt="Photo 4"></a>
-        <a href="5.jpg" class="gallery-item"><img src="thumbnail_5.jpg" alt="Photo 5"></a>
-        <a href="6.jpg" class="gallery-item"><img src="thumbnail_6.jpg" alt="Photo 6"></a>
-        <a href="7.jpg" class="gallery-item"><img src="thumbnail_7.jpg" alt="Photo 7" loading="lazy"></a>
-        <a href="8.jpg" class="gallery-item"><img src="thumbnail_8.jpg" alt="Photo 8" loading="lazy"></a>
-        <a href="9.jpg" class="gallery-item"><img src="thumbnail_9.jpg" alt="Photo 9" loading="lazy"></a>
-        <a href="10.jpg" class="gallery-item"><img src="thumbnail_10.jpg" alt="Photo 10" loading="lazy"></a>
-        <a href="11.jpg" class="gallery-item"><img src="thumbnail_11.jpg" alt="Photo 11" loading="lazy"></a>
-        <a href="12.jpg" class="gallery-item"><img src="thumbnail_12.jpg" alt="Photo 12" loading="lazy"></a>
-        <a href="13.jpg" class="gallery-item"><img src="thumbnail_13.jpg" alt="Photo 13" loading="lazy"></a>
-        <a href="14.jpg" class="gallery-item"><img src="thumbnail_14.jpg" alt="Photo 14" loading="lazy"></a>
-        <a href="15.jpg" class="gallery-item"><img src="thumbnail_15.jpg" alt="Photo 15" loading="lazy"></a>
+    <div class="gallery-grid">
+        <a href="1.jpg" class="glightbox gallery-item"><img src="thumbnail_1.jpg" alt="Photo 1"></a>
+        <a href="2.jpg" class="glightbox gallery-item"><img src="thumbnail_2.jpg" alt="Photo 2"></a>
+        <a href="3.jpg" class="glightbox gallery-item"><img src="thumbnail_3.jpg" alt="Photo 3"></a>
+        <a href="4.jpg" class="glightbox gallery-item"><img src="thumbnail_4.jpg" alt="Photo 4"></a>
+        <a href="5.jpg" class="glightbox gallery-item"><img src="thumbnail_5.jpg" alt="Photo 5"></a>
+        <a href="6.jpg" class="glightbox gallery-item"><img src="thumbnail_6.jpg" alt="Photo 6"></a>
+        <a href="7.jpg" class="glightbox gallery-item"><img src="thumbnail_7.jpg" alt="Photo 7" loading="lazy"></a>
+        <a href="8.jpg" class="glightbox gallery-item"><img src="thumbnail_8.jpg" alt="Photo 8" loading="lazy"></a>
+        <a href="9.jpg" class="glightbox gallery-item"><img src="thumbnail_9.jpg" alt="Photo 9" loading="lazy"></a>
+        <a href="10.jpg" class="glightbox gallery-item"><img src="thumbnail_10.jpg" alt="Photo 10" loading="lazy"></a>
+        <a href="11.jpg" class="glightbox gallery-item"><img src="thumbnail_11.jpg" alt="Photo 11" loading="lazy"></a>
+        <a href="12.jpg" class="glightbox gallery-item"><img src="thumbnail_12.jpg" alt="Photo 12" loading="lazy"></a>
+        <a href="13.jpg" class="glightbox gallery-item"><img src="thumbnail_13.jpg" alt="Photo 13" loading="lazy"></a>
+        <a href="14.jpg" class="glightbox gallery-item"><img src="thumbnail_14.jpg" alt="Photo 14" loading="lazy"></a>
+        <a href="15.jpg" class="glightbox gallery-item"><img src="thumbnail_15.jpg" alt="Photo 15" loading="lazy"></a>
     </div>
 
-    <!-- Модули PhotoSwipe -->
-    <script type="module">
-        import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
-        import PhotoSwipe from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe.esm.js';
-
-        const lightbox = new PhotoSwipeLightbox({
-            gallery: '#gallery',
-            children: 'a',
-            pswpModule: PhotoSwipe,
-            
-            /* Явное включение навигационных стрелок управления */
-            arrowKeys: true,
-            showHideAnimationType: 'fade',
-
-            /* Настройки действий */
-            doubleTapAction: 'zoom',            // Зумирование строго по двойному тапу
-            singleTapAction: 'toggle-controls', // Одиночный тап переключает видимость UI
-            
-            maxZoomLevel: 2.5
+    <!-- Подключение библиотеки GLightbox -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: false, // Отключаем стандартный хаотичный зум
+            draggable: true,
+            openEffect: 'fade',
+            closeEffect: 'fade'
         });
 
-        /* Блокировка pinch-zoom (щипок двумя пальцами отключен) */
-        lightbox.on('bindEvents', () => {
-            lightbox.pswp.gestures.pinch = false; 
-        });
+        // Реализация зума строго по двойному тапу
+        let lastTap = 0;
+        let isZoomed = false;
 
-        // Автоматическое определение реального разрешения фото перед вызовом просмотра
-        lightbox.addFilter('itemData', (itemData) => {
-            return new Promise((resolve) => {
-                if (itemData.w && itemData.h) {
-                    resolve(itemData);
-                    return;
+        document.addEventListener('touchend', function (e) {
+            const img = e.target.closest('.gslide-image img');
+            if (!img) return;
+
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+
+            if (tapLength < 300 && tapLength > 0) {
+                e.preventDefault();
+                if (!isZoomed) {
+                    img.style.transform = 'scale(2.2)';
+                    isZoomed = true;
+                } else {
+                    img.style.transform = 'scale(1)';
+                    isZoomed = false;
                 }
-                const img = new Image();
-                img.src = itemData.src;
-                img.onload = () => {
-                    itemData.w = img.naturalWidth;
-                    itemData.h = img.naturalHeight;
-                    resolve(itemData);
-                };
-                img.onerror = () => {
-                    itemData.w = 1920;
-                    itemData.h = 1080;
-                    resolve(itemData);
-                };
+            }
+            lastTap = currentTime;
+        });
+
+        // Сброс зума при переключении на другое фото
+        lightbox.on('slide_change', () => {
+            isZoomed = false;
+            document.querySelectorAll('.gslide-image img').forEach(img => {
+                img.style.transform = 'scale(1)';
             });
         });
 
-        lightbox.init();
-    </script>
-
-    <!-- Предзагрузка полноразмерных оригиналов при касании -->
-    <script>
+        // Предзагрузка полноразмерных оригиналов при касании миниатюры
         document.querySelectorAll('.gallery-item').forEach(item => {
             const preload = () => {
                 const url = item.getAttribute('href');
